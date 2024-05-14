@@ -22,3 +22,100 @@ when
 then
     System.out.println("Your team (" + $yourTeamName + ") is better than the opponent team (" + $opponentTeamName + ") by more than 3 points with an average rating difference of " + ($yourAverageRating - $opponentAverageRating));
 end
+
+
+rule "Compare Teams"
+when
+    $yourTeam : Team(teamType == TeamType.YOUR_TEAM, $yourTeamName : name)
+    $yourAverageRating : Double() from accumulate(
+        Player(team == $yourTeam, $rating : (pace + shooting + dribbling + passing + defending + physical) / 6),
+        average($rating)
+    )
+
+    $opponentTeam : Team(teamType == TeamType.OPPONENT_TEAM, $opponentTeamName : name)
+    $opponentAverageRating : Double() from accumulate(
+        Player(team == $opponentTeam, $rating : (pace + shooting + dribbling + passing + defending + physical) / 6),
+        average($rating)
+    )
+
+    eval(($yourAverageRating > $opponentAverageRating - 3) && ($yourAverageRating < $opponentAverageRating + 3))
+then
+    System.out.println("Your team (" + $yourTeamName + ") and opponent team (" + $opponentTeamName + ") are relatively equal");
+end
+
+
+rule "Sort and Check Skills"
+when
+    // Definiranje niza ocjena igrača za različite vještine
+    $skills : List(Double)() from collect(Double() from Arrays.asList(pace, shooting, dribbling, passing, defending, physical))
+
+    // Sortiranje niza ocjena od najmanjeg do najvećeg
+    $sortedSkills : List(Double)() from accumulate($skill : Double() from $skills, collectList($skill, reverseOrder()))
+
+    // Provjera jesu li passing i shooting dva najmanja
+    Double($passing : this == $sortedSkills.get(0), $shooting : this == $sortedSkills.get(1)) ||
+    Double($passing : this == $sortedSkills.get(1), $shooting : this == $sortedSkills.get(0))
+then
+    System.out.println("
+    Deffence:
+        Defencive style: Pressure on heavy touch
+        Width: 50
+        Deapth: 50
+    Offence:
+        Build up play: Fast build up
+        Change creation: Direct Passing
+        Width: 60
+        Players run into box: Medium
+    ");
+end
+
+
+
+rule "Sort and Check Phisycal"
+when
+    // Definiranje niza ocjena igrača za različite vještine
+    $skills : List(Double)() from collect(Double() from Arrays.asList(pace, shooting, dribbling, passing, defending, physical))
+
+    // Sortiranje niza ocjena od najmanjeg do najvećeg
+    $sortedSkills : List(Double)() from accumulate($skill : Double() from $skills, collectList($skill, reverseOrder()))
+
+    // Provjera da li je passing najgori
+    Double($physical : this == $sortedSkills.get(0))
+then
+    System.out.println("
+    Deffence:
+        Defencive style: Constant pressure
+        Width: 60
+        Deapth: 70
+    Offence:
+        Build up play: Fast build up
+        Change creation: Direct Passing
+        Width: 60
+        Players run into box: Medium
+    ");
+end
+
+
+rule "Sort and Check Pace"
+when
+    // Definiranje niza ocjena igrača za različite vještine
+    $skills : List(Double)() from collect(Double() from Arrays.asList(pace, shooting, dribbling, passing, defending, physical))
+
+    // Sortiranje niza ocjena od najmanjeg do najvećeg
+    $sortedSkills : List(Double)() from accumulate($skill : Double() from $skills, collectList($skill, reverseOrder()))
+
+    // Provjera da li je pace najgori
+    Double($pace : this == $sortedSkills.get(0))
+then
+    System.out.println("
+    Deffence:
+        Defencive style: Drop back
+        Width: 50
+        Deapth: 30
+    Offence:
+        Build up play: Long ball
+        Change creation: Forward runs
+        Width: 65
+        Players run into box: High
+    ");
+end

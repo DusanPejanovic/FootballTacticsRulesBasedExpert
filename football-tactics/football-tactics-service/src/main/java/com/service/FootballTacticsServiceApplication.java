@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan(basePackages = {"com.ftn.sbnz.backward.service.controllers", "com.ftn.sbnz.backward.service.services"})
-@SpringBootApplication(scanBasePackages = { "com.ftn.sbnz.backward.model", "com.ftn.sbnz.backward.kjar" })
+@SpringBootApplication(scanBasePackages = { "com.backward.model", "com.ftn.sbnz.backward.kjar" })
 public class FootballTacticsServiceApplication {
 
 	public static void main(String[] args) {
