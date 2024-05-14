@@ -1,0 +1,10 @@
+package backward;
+
+rule "Check System Status"
+when
+    // Condition part (LHS)
+    // This example does not use any condition; it fires on every execution
+then
+    // Action part (RHS)
+    System.out.println("Everything is working normally.");
+end
