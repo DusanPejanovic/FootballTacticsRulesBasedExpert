@@ -17,36 +17,32 @@ public class ActivateFootballTacticsRulesService {
 
   public void fireRules() {
     KieSession kSession = kieContainer.newKieSession();
-    kSession.insert( new Location("Office", "House") );
-    kSession.insert( new Location("Kitchen", "House") );
-    kSession.insert( new Location("Knife", "Kitchen") );
-    kSession.insert( new Location("Cheese", "Kitchen") );
-    kSession.insert( new Location("Desk", "Office") );
-    kSession.insert( new Location("Chair", "Office") );
-    kSession.insert( new Location("Computer", "Desk") );
-    kSession.insert( new Location("Draw", "Desk") );
+    Team yourTeam = new Team("Your Team", TeamType.YOUR_TEAM);
+    Team opponentTeam = new Team("Opponent Team", TeamType.OPPONENT_TEAM);
 
-    kSession.insert( "go1" );
-    kSession.fireAllRules();
-    System.out.println("---");
+    Player player1 = new Player("Player One", 80, 75, 85, 70, 65, 78, 1.80, 50000, yourTeam);
+    Player player2 = new Player("Player Two", 70, 80, 60, 85, 75, 82, 1.85, 60000, yourTeam);
+    Player player3 = new Player("Player Three", 60, 65, 70, 55, 60, 68, 1.75, 40000, opponentTeam);
+    Player player4 = new Player("Player Four", 90, 85, 95, 80, 85, 92, 1.90, 70000, opponentTeam);
 
-    kSession.insert( "go2" );
-    kSession.fireAllRules();
-    System.out.println("---");
+    yourTeam.addPlayer(player1);
+    yourTeam.addPlayer(player2);
 
-    kSession.insert( "go3" );
-    kSession.fireAllRules();
-    System.out.println("---");
+    opponentTeam.addPlayer(player3);
+    opponentTeam.addPlayer(player4);
 
-    kSession.insert( new Location("Key", "Draw") );
-    kSession.fireAllRules();
-    System.out.println("---");
+    KieServices ks = KieServices.Factory.get();
+    KieContainer kc = ks.getKieClasspathContainer();
+    KieSession ksession = kc.newKieSession("ksession-rules");
 
-    kSession.insert( "go4" );
-    kSession.fireAllRules();
-    System.out.println("---");
+    ksession.insert(yourTeam);
+    ksession.insert(opponentTeam);
+    ksession.insert(player1);
+    ksession.insert(player2);
+    ksession.insert(player3);
+    ksession.insert(player4);
 
-    kSession.insert( "go5" );
-    kSession.fireAllRules();
+    ksession.fireAllRules();
+    ksession.dispose();
   }
 }

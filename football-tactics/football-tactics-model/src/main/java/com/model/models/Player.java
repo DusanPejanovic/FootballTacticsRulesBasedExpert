@@ -8,12 +8,15 @@ public class Player implements Serializable {
     private int passing;
     private int defending;
     private int physical;
+    private double height;      // Height in meters
+    private double weeklyWage;  // Weekly wage in currency units
+    private Team team;
 
     // No-arg constructor
     public Player() {
     }
 
-    public Player(String name, int pace, int shooting, int dribbling, int passing, int defending, int physical) {
+    public Player(String name, int pace, int shooting, int dribbling, int passing, int defending, int physical, double height, double weeklyWage, Team team) {
         this.name = name;
         this.pace = pace;
         this.shooting = shooting;
@@ -21,6 +24,9 @@ public class Player implements Serializable {
         this.passing = passing;
         this.defending = defending;
         this.physical = physical;
+        this.height = height;
+        this.weeklyWage = weeklyWage;
+        this.team = team;
     }
 
     // Getters and setters
@@ -80,6 +86,30 @@ public class Player implements Serializable {
         this.physical = physical;
     }
 
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getWeeklyWage() {
+        return weeklyWage;
+    }
+
+    public void setWeeklyWage(double weeklyWage) {
+        this.weeklyWage = weeklyWage;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     @Override
     public String toString() {
         return "Player{" +
@@ -90,6 +120,9 @@ public class Player implements Serializable {
                 ", passing=" + passing +
                 ", defending=" + defending +
                 ", physical=" + physical +
+                ", height=" + height +
+                ", weeklyWage=" + weeklyWage +
+                ", team=" + team.getName() +
                 '}';
     }
 
@@ -106,18 +139,28 @@ public class Player implements Serializable {
         if (passing != player.passing) return false;
         if (defending != player.defending) return false;
         if (physical != player.physical) return false;
-        return name != null ? name.equals(player.name) : player.name == null;
+        if (Double.compare(player.height, height) != 0) return false;
+        if (Double.compare(player.weeklyWage, weeklyWage) != 0) return false;
+        if (name != null ? !name.equals(player.name) : player.name != null) return false;
+        return team != null ? team.equals(player.team) : player.team == null;
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
+        int result;
+        long temp;
+        result = name != null ? name.hashCode() : 0;
         result = 31 * result + pace;
         result = 31 * result + shooting;
         result = 31 * result + dribbling;
         result = 31 * result + passing;
         result = 31 * result + defending;
         result = 31 * result + physical;
+        temp = Double.doubleToLongBits(height);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(weeklyWage);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (team != null ? team.hashCode() : 0);
         return result;
     }
 }

@@ -5,14 +5,16 @@ import java.util.List;
 public class Team implements Serializable {
     private String name;
     private List<Player> players;
+    private TeamType teamType;
 
     // No-arg constructor
     public Team() {
         this.players = new ArrayList<>();
     }
 
-    public Team(String name) {
+    public Team(String name, TeamType teamType) {
         this.name = name;
+        this.teamType = teamType;
         this.players = new ArrayList<>();
     }
 
@@ -36,11 +38,29 @@ public class Team implements Serializable {
         this.name = name;
     }
 
+    public TeamType getTeamType() {
+        return teamType;
+    }
+
+    public void setTeamType(TeamType teamType) {
+        this.teamType = teamType;
+    }
+
+    public double getAverageRating() {
+        if (players.isEmpty()) return 0.0;
+        double totalRating = 0.0;
+        for (Player player : players) {
+            totalRating += (player.getPace() + player.getShooting() + player.getDribbling() + player.getPassing() + player.getDefending() + player.getPhysical()) / 6.0;
+        }
+        return totalRating / players.size();
+    }
+
     @Override
     public String toString() {
         return "Team{" +
                 "name='" + name + '\'' +
                 ", players=" + players +
+                ", teamType=" + teamType +
                 '}';
     }
 
@@ -52,13 +72,15 @@ public class Team implements Serializable {
         Team team = (Team) o;
 
         if (name != null ? !name.equals(team.name) : team.name != null) return false;
-        return players != null ? players.equals(team.players) : team.players == null;
+        if (players != null ? !players.equals(team.players) : team.players != null) return false;
+        return teamType == team.teamType;
     }
 
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (players != null ? players.hashCode() : 0);
+        result = 31 * result + (teamType != null ? teamType.hashCode() : 0);
         return result;
     }
 }
