@@ -1,8 +1,8 @@
-package com.example;
+package rules;
 
-import com.example.Player;
-import com.example.Team;
-import com.example.TeamType;
+import com.model.models.Player;
+import com.model.models.Team;
+import com.model.models.TeamType;
 
 rule "Compare Teams"
 when

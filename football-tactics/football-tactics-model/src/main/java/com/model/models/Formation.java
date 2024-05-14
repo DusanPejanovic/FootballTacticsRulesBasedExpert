@@ -1,3 +1,8 @@
+
+
+package com.model.models;
+
+
 import java.io.Serializable;
 
 public class Formation implements Serializable {

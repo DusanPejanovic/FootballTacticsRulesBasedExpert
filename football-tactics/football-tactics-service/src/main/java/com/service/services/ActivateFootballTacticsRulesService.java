@@ -4,7 +4,10 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.model.models.Location;
+import com.model.models.Player;
+import com.model.models.Team;
+import com.model.models.TeamType;
+
 
 @Service
 public class ActivateFootballTacticsRulesService {
@@ -16,7 +19,7 @@ public class ActivateFootballTacticsRulesService {
   }
 
   public void fireRules() {
-    KieSession kSession = kieContainer.newKieSession();
+    KieSession ksession = kieContainer.newKieSession();
     Team yourTeam = new Team("Your Team", TeamType.YOUR_TEAM);
     Team opponentTeam = new Team("Opponent Team", TeamType.OPPONENT_TEAM);
 
@@ -31,9 +34,6 @@ public class ActivateFootballTacticsRulesService {
     opponentTeam.addPlayer(player3);
     opponentTeam.addPlayer(player4);
 
-    KieServices ks = KieServices.Factory.get();
-    KieContainer kc = ks.getKieClasspathContainer();
-    KieSession ksession = kc.newKieSession("ksession-rules");
 
     ksession.insert(yourTeam);
     ksession.insert(opponentTeam);
