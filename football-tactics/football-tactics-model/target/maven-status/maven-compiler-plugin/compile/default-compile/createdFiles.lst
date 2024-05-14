@@ -1,2 +1,4 @@
+Team.class
+Formation.class
 com/model/FootballTacticsModelApplication.class
-com/model/models/Location.class
+Player.class
