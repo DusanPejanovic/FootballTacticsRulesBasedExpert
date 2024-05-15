@@ -32,16 +32,18 @@ public class SampleAppService {
 		Team yourTeam = new Team("Your Team", TeamType.YOUR_TEAM);
 		Team opponentTeam = new Team("Opponent Team", TeamType.OPPONENT_TEAM);
 
-		Player player1 = new Player("Player One", 80, 75, 85, 70, 65, 78, 1.80, 50000, yourTeam);
-		Player player2 = new Player("Player Two", 70, 80, 60, 85, 75, 82, 1.85, 60000, yourTeam);
-		Player player3 = new Player("Player Three", 90, 65, 90, 95, 90, 98, 1.75, 40000, opponentTeam);
-		Player player4 = new Player("Player Four", 90, 95, 95, 90, 85, 92, 1.90, 70000, opponentTeam);
 
-		yourTeam.addPlayer(player1);
-		yourTeam.addPlayer(player2);
+		// Strategy 1
+		Player player1 = new Player("Player One", 60, 60, 60, 60, 60, 60, 1.80, 50000, opponentTeam);
+		Player player2 = new Player("Player Two", 70, 70, 70, 70, 70, 70, 1.85, 60000, opponentTeam);
+		Player player3 = new Player("Player Three", 100, 100, 100, 100, 100, 100, 1.75, 40000, yourTeam);
+		Player player4 = new Player("Player Four", 100, 100, 100, 100, 100, 100, 1.90, 70000, yourTeam);
 
-		opponentTeam.addPlayer(player3);
-		opponentTeam.addPlayer(player4);
+		yourTeam.addPlayer(player3);
+		yourTeam.addPlayer(player4);
+
+		opponentTeam.addPlayer(player1);
+		opponentTeam.addPlayer(player2);
 
 
 		ksession.insert(yourTeam);

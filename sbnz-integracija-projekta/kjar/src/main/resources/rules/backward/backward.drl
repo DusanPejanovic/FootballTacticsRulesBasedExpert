@@ -23,8 +23,7 @@ when
 
     eval($yourAverageRating < $opponentAverageRating - 3)
 then
-    System.out.println("Your Team Average Rating: " + $yourAverageRating);
-    System.out.println("Opponent Team Average Rating: " + $opponentAverageRating);
+    System.out.println("A - Our team average rating 3 less than opponent team");
     insertLogical(new Condition(ConditionType.A));
 end
 
@@ -46,6 +45,7 @@ when
 
     eval(Math.abs($yourAverageRating - $opponentAverageRating) <= 3)
 then
+    System.out.println("B - Average ratings difference is within 3");
     insertLogical(new Condition(ConditionType.B));
 end
 
@@ -67,6 +67,7 @@ when
 
     eval($yourAverageRating > $opponentAverageRating + 3)
 then
+    System.out.println("C - Our team average rating 3 greater than opponent team");
     insertLogical(new Condition(ConditionType.C));
 end
 
@@ -105,9 +106,10 @@ when
         average($physical)
     )
 
-    eval($averagePassing <= $averagePace && $averagePassing <= $averageShooting && $averagePassing <= $averageDefending && $averagePassing <= $averagePhysical)
-    eval($averageDribbling <= $averagePace && $averageDribbling <= $averageShooting && $averageDribbling <= $averageDefending && $averageDribbling <= $averagePhysical)
+    eval($averagePassing < $averagePace && $averagePassing < $averageShooting && $averagePassing < $averageDefending && $averagePassing < $averagePhysical)
+    eval($averageDribbling < $averagePace && $averageDribbling < $averageShooting && $averageDribbling < $averageDefending && $averageDribbling < $averagePhysical)
 then
+    System.out.println("D - Opponent team worst attributes are passing and dribbling");
     insertLogical(new Condition(ConditionType.D));
 end
 
@@ -146,8 +148,9 @@ when
         average($defending)
     )
 
-    eval($averagePhysical <= $averagePace && $averagePhysical <= $averageShooting && $averagePhysical <= $averageDribbling && $averagePhysical <= $averagePassing && $averagePhysical <= $averageDefending)
+    eval($averagePhysical < $averagePace && $averagePhysical < $averageShooting && $averagePhysical < $averageDribbling && $averagePhysical < $averagePassing && $averagePhysical < $averageDefending)
 then
+    System.out.println("E - Opponent team worst attribute is physical");
     insertLogical(new Condition(ConditionType.E));
 end
 
@@ -186,8 +189,9 @@ when
         average($physical)
     )
 
-    eval($averagePace <= $averageShooting && $averagePace <= $averageDribbling && $averagePace <= $averagePassing && $averagePace <= $averageDefending && $averagePace <= $averagePhysical)
+    eval($averagePace < $averageShooting && $averagePace < $averageDribbling && $averagePace < $averagePassing && $averagePace < $averageDefending && $averagePace < $averagePhysical)
 then
+    System.out.println("H - Opponent team worst attribute is pace");
     insertLogical(new Condition(ConditionType.H));
 end
 
@@ -228,13 +232,14 @@ when
 
     eval(
         !(
-            ($averagePassing <= $averagePace && $averagePassing <= $averageShooting && $averagePassing <= $averageDefending && $averagePassing <= $averagePhysical) &&
-            ($averageDribbling <= $averagePace && $averageDribbling <= $averageShooting && $averageDribbling <= $averageDefending && $averageDribbling <= $averagePhysical)
+            ($averagePassing < $averagePace && $averagePassing < $averageShooting && $averagePassing < $averageDefending && $averagePassing < $averagePhysical) &&
+            ($averageDribbling < $averagePace && $averageDribbling < $averageShooting && $averageDribbling < $averageDefending && $averageDribbling < $averagePhysical)
         ) &&
-        !($averagePhysical <= $averagePace && $averagePhysical <= $averageShooting && $averagePhysical <= $averageDribbling && $averagePhysical <= $averagePassing && $averagePhysical <= $averageDefending) &&
-        !($averagePace <= $averageShooting && $averagePace <= $averageDribbling && $averagePace <= $averagePassing && $averagePace <= $averageDefending && $averagePace <= $averagePhysical)
+        !($averagePhysical < $averagePace && $averagePhysical < $averageShooting && $averagePhysical < $averageDribbling && $averagePhysical < $averagePassing && $averagePhysical < $averageDefending) &&
+        !($averagePace < $averageShooting && $averagePace < $averageDribbling && $averagePace < $averagePassing && $averagePace < $averageDefending && $averagePace < $averagePhysical)
     )
 then
+    System.out.println("J - None of D, E, H are true");
     insertLogical(new Condition(ConditionType.J));
 end
 
@@ -276,6 +281,7 @@ when
 
     eval($averagePhysical > $averagePace + 3 && $averagePhysical > $averageShooting + 3 && $averagePhysical > $averageDribbling + 3 && $averagePhysical > $averagePassing + 3 && $averagePhysical > $averageDefending + 3)
 then
+    System.out.println("K - Our team's average physical is greater than other attributes by 3");
     insertLogical(new Condition(ConditionType.K));
 end
 
@@ -316,6 +322,7 @@ when
 
     eval($averagePassing > $averagePace + 3 && $averagePassing > $averageShooting + 3 && $averagePassing > $averageDribbling + 3 && $averagePassing > $averageDefending + 3 && $averagePassing > $averagePhysical + 3)
 then
+    System.out.println("M - Our team's average passing is greater than other attributes by 3");
     insertLogical(new Condition(ConditionType.M));
 end
 
@@ -356,6 +363,7 @@ when
 
     eval($averagePace > $averageShooting + 3 && $averagePace > $averageDribbling + 3 && $averagePace > $averagePassing + 3 && $averagePace > $averageDefending + 3 && $averagePace > $averagePhysical + 3)
 then
+    System.out.println("O - Our team's average pace is greater than other attributes by 3");
     insertLogical(new Condition(ConditionType.O));
 end
 
@@ -400,6 +408,7 @@ when
         !( $averagePace > $averageShooting + 3 && $averagePace > $averageDribbling + 3 && $averagePace > $averagePassing + 3 && $averagePace > $averageDefending + 3 && $averagePace > $averagePhysical + 3 )
     )
 then
+    System.out.println("P - None of K, M, O are true");
     insertLogical(new Condition(ConditionType.P));
 end
 
