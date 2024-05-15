@@ -7,7 +7,6 @@ import com.ftn.sbnz.model.models.ConditionType;
 
 rule "A - Our team average rating 3 less than opponent team"
 salience 100
-lock-on-active true
 when
     $yourTeam : Team(teamType == TeamType.YOUR_TEAM)
     $opponentTeam : Team(teamType == TeamType.OPPONENT_TEAM)
@@ -31,7 +30,6 @@ end
 
 rule "B - Average ratings difference is within 3"
 salience 90
-lock-on-active true
 when
     $yourTeam : Team(teamType == TeamType.YOUR_TEAM)
     $opponentTeam : Team(teamType == TeamType.OPPONENT_TEAM)
@@ -53,7 +51,6 @@ end
 
 rule "C - Our team average rating 3 greater than opponent team"
 salience 80
-lock-on-active true
 when
     $yourTeam : Team(teamType == TeamType.YOUR_TEAM)
     $opponentTeam : Team(teamType == TeamType.OPPONENT_TEAM)
@@ -75,7 +72,6 @@ end
 
 rule "D - Opponent team worst attributes are passing and dribbling"
 salience 70
-lock-on-active true
 when
     $opponentTeam : Team(teamType == TeamType.OPPONENT_TEAM)
 
@@ -117,7 +113,6 @@ end
 
 rule "E - Opponent team worst attribute is physical"
 salience 60
-lock-on-active true
 when
     $opponentTeam : Team(teamType == TeamType.OPPONENT_TEAM)
 
@@ -158,7 +153,6 @@ end
 
 rule "H - Opponent team worst attribute is pace"
 salience 50
-lock-on-active true
 when
     $opponentTeam : Team(teamType == TeamType.OPPONENT_TEAM)
 
@@ -199,7 +193,6 @@ end
 
 rule "J - None of D, E, H are true"
 salience 40
-lock-on-active true
 when
     not (Condition(type == ConditionType.D) or Condition(type == ConditionType.E) or Condition(type == ConditionType.H))
 then
@@ -208,7 +201,6 @@ end
 
 rule "K - Our team's average physical is greater than other attributes by 3"
 salience 30
-lock-on-active true
 when
     $yourTeam : Team(teamType == TeamType.YOUR_TEAM)
 
@@ -249,7 +241,6 @@ end
 
 rule "M - Our team's average passing is greater than other attributes by 3"
 salience 20
-lock-on-active true
 when
     $yourTeam : Team(teamType == TeamType.YOUR_TEAM)
 
@@ -290,7 +281,6 @@ end
 
 rule "O - Our team's average pace is greater than other attributes by 3"
 salience 10
-lock-on-active true
 when
     $yourTeam : Team(teamType == TeamType.YOUR_TEAM)
 
@@ -331,7 +321,6 @@ end
 
 rule "P - None of K, M, O are true"
 salience 0
-lock-on-active true
 when
     not (Condition(type == ConditionType.K) or Condition(type == ConditionType.M) or Condition(type == ConditionType.O))
 then
@@ -355,7 +344,6 @@ end
 
 rule "Strategy 2 - B and D"
 salience -20
-lock-on-active true
 when
     $conditionB : Condition(type == ConditionType.B)
     $conditionD : Condition(type == ConditionType.D)
@@ -372,7 +360,6 @@ end
 
 rule "Strategy 3 - B and E"
 salience -30
-lock-on-active true
 when
     $conditionB : Condition(type == ConditionType.B)
     $conditionE : Condition(type == ConditionType.E)
@@ -389,7 +376,6 @@ end
 
 rule "Strategy 4 - B and H"
 salience -40
-lock-on-active true
 when
     $conditionB : Condition(type == ConditionType.B)
     $conditionH : Condition(type == ConditionType.H)
@@ -406,7 +392,6 @@ end
 
 rule "Strategy 5 - J and K or C and K"
 salience -50
-lock-on-active true
 when
     $conditionJ : Condition(type == ConditionType.J)
     $conditionK : Condition(type == ConditionType.K)
@@ -426,7 +411,6 @@ end
 
 rule "Strategy 6 - J and M or C and M"
 salience -60
-lock-on-active true
 when
     $conditionJ : Condition(type == ConditionType.J)
     $conditionM : Condition(type == ConditionType.M)
@@ -446,7 +430,6 @@ end
 
 rule "Strategy 7 - J and O or C and O"
 salience -70
-lock-on-active true
 when
     $conditionJ : Condition(type == ConditionType.J)
     $conditionO : Condition(type == ConditionType.O)
@@ -466,7 +449,6 @@ end
 
 rule "Strategy 8 - J and P or C and P"
 salience -80
-lock-on-active true
 when
     $conditionJ : Condition(type == ConditionType.J)
     $conditionP : Condition(type == ConditionType.P)
