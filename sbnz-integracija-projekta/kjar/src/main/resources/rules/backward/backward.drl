@@ -1,9 +1,17 @@
 package backward;
-
 import com.ftn.sbnz.model.models.Team;
 import com.ftn.sbnz.model.models.Player;
 import com.ftn.sbnz.model.models.TeamType;
 import com.ftn.sbnz.model.models.Condition;
+
+rule "Demo"
+salience 100
+lock-on-active true
+when
+
+then
+    System.out.println("Defensive Style: nsive Style: nsive Style: nsive Style: nsive Style: Drop Back");
+end
 
 rule "A - Our team average rating 3 less than opponent team"
 salience 100
@@ -22,7 +30,7 @@ when
         average(($pace + $shooting + $dribbling + $passing + $defending + $physical) / 6.0)
     )
 
-    $isLess : Boolean() from ($yourAverageRating < $opponentAverageRating - 3)
+    eval($yourAverageRating < $opponentAverageRating - 3)
 then
     System.out.println("Defensive Style: Drop Back");
     System.out.println("Width: 30");
@@ -50,7 +58,7 @@ when
         average(($pace + $shooting + $dribbling + $passing + $defending + $physical) / 6.0)
     )
 
-    $isWithinThree : Boolean() from (Math.abs($yourAverageRating - $opponentAverageRating) <= 3)
+    eval(Math.abs($yourAverageRating - $opponentAverageRating) <= 3)
 then
     insertLogical(new Condition("B"));
 end
@@ -72,7 +80,7 @@ when
         average(($pace + $shooting + $dribbling + $passing + $defending + $physical) / 6.0)
     )
 
-    $isGreater : Boolean() from ($yourAverageRating > $opponentAverageRating + 3)
+    eval($yourAverageRating > $opponentAverageRating + 3)
 then
     insertLogical(new Condition("C"));
 end
@@ -113,8 +121,8 @@ when
         average($physical)
     )
 
-    $worstPassing : Boolean() from ($averagePassing <= $averagePace && $averagePassing <= $averageShooting && $averagePassing <= $averageDefending && $averagePassing <= $averagePhysical)
-    $worstDribbling : Boolean() from ($averageDribbling <= $averagePace && $averageDribbling <= $averageShooting && $averageDribbling <= $averageDefending && $averageDribbling <= $averagePhysical)
+    eval($averagePassing <= $averagePace && $averagePassing <= $averageShooting && $averagePassing <= $averageDefending && $averagePassing <= $averagePhysical)
+    eval($averageDribbling <= $averagePace && $averageDribbling <= $averageShooting && $averageDribbling <= $averageDefending && $averageDribbling <= $averagePhysical)
 then
     insertLogical(new Condition("D"));
 end
@@ -155,7 +163,7 @@ when
         average($defending)
     )
 
-    $worstPhysical : Boolean() from ($averagePhysical <= $averagePace && $averagePhysical <= $averageShooting && $averagePhysical <= $averageDribbling && $averagePhysical <= $averagePassing && $averagePhysical <= $averageDefending)
+    eval($averagePhysical <= $averagePace && $averagePhysical <= $averageShooting && $averagePhysical <= $averageDribbling && $averagePhysical <= $averagePassing && $averagePhysical <= $averageDefending)
 then
     insertLogical(new Condition("E"));
 end
@@ -196,7 +204,7 @@ when
         average($physical)
     )
 
-    $worstPace : Boolean() from ($averagePace <= $averageShooting && $averagePace <= $averageDribbling && $averagePace <= $averagePassing && $averagePace <= $averageDefending && $averagePace <= $averagePhysical)
+    eval($averagePace <= $averageShooting && $averagePace <= $averageDribbling && $averagePace <= $averagePassing && $averagePace <= $averageDefending && $averagePace <= $averagePhysical)
 then
     insertLogical(new Condition("H"));
 end
@@ -246,7 +254,7 @@ when
         average($defending)
     )
 
-    $isPhysicalDominant : Boolean() from ($averagePhysical > $averagePace + 3 && $averagePhysical > $averageShooting + 3 && $averagePhysical > $averageDribbling + 3 && $averagePhysical > $averagePassing + 3 && $averagePhysical > $averageDefending + 3)
+    eval($averagePhysical > $averagePace + 3 && $averagePhysical > $averageShooting + 3 && $averagePhysical > $averageDribbling + 3 && $averagePhysical > $averagePassing + 3 && $averagePhysical > $averageDefending + 3)
 then
     insertLogical(new Condition("K"));
 end
@@ -287,7 +295,7 @@ when
         average($physical)
     )
 
-    $isPassingDominant : Boolean() from ($averagePassing > $averagePace + 3 && $averagePassing > $averageShooting + 3 && $averagePassing > $averageDribbling + 3 && $averagePassing > $averageDefending + 3 && $averagePassing > $averagePhysical + 3)
+    eval($averagePassing > $averagePace + 3 && $averagePassing > $averageShooting + 3 && $averagePassing > $averageDribbling + 3 && $averagePassing > $averageDefending + 3 && $averagePassing > $averagePhysical + 3)
 then
     insertLogical(new Condition("M"));
 end
@@ -328,7 +336,7 @@ when
         average($physical)
     )
 
-    $isPaceDominant : Boolean() from ($averagePace > $averageShooting + 3 && $averagePace > $averageDribbling + 3 && $averagePace > $averagePassing + 3 && $averagePace > $averageDefending + 3 && $averagePace > $averagePhysical + 3)
+    eval($averagePace > $averageShooting + 3 && $averagePace > $averageDribbling + 3 && $averagePace > $averagePassing + 3 && $averagePace > $averageDefending + 3 && $averagePace > $averagePhysical + 3)
 then
     insertLogical(new Condition("O"));
 end
