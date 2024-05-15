@@ -4,6 +4,14 @@ import com.ftn.sbnz.model.models.Player;
 import com.ftn.sbnz.model.models.TeamType;
 import com.ftn.sbnz.model.models.Condition;
 
+rule "Demo"
+salience 100
+lock-on-active true
+when
+
+then
+    System.out.println("Defensive Style: nsive Style: nsive Style: nsive Style: nsive Style: Drop Back");
+end
 
 rule "A - Our team average rating 3 less than opponent team"
 salience 100

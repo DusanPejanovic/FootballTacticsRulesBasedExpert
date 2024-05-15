@@ -60,23 +60,6 @@ public class Team implements Serializable {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Team team = (Team) o;
 
-        if (name != null ? !name.equals(team.name) : team.name != null) return false;
-        if (players != null ? !players.equals(team.players) : team.players != null) return false;
-        return teamType == team.teamType;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (players != null ? players.hashCode() : 0);
-        result = 31 * result + (teamType != null ? teamType.hashCode() : 0);
-        return result;
-    }
 }

@@ -6,6 +6,7 @@ public class Condition {
     private String type;
 
     public Condition() {
+        this.type = "";
     }
 
     public Condition(String type) {
@@ -20,18 +21,7 @@ public class Condition {
         this.type = type;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Condition condition = (Condition) o;
-        return Objects.equals(type, condition.type);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(type);
-    }
 
     @Override
     public String toString() {

@@ -17,7 +17,16 @@ public class Player implements Serializable {
 
     // No-arg constructor
     public Player() {
-    }
+        this.name = "";
+        this.pace = 0;
+        this.shooting = 0;
+        this.dribbling = 0;
+        this.passing = 0;
+        this.defending = 0;
+        this.physical = 0;
+        this.height = 0;
+        this.weeklyWage = 0;
+        this.team = null;    }
 
     public Player(String name, int pace, int shooting, int dribbling, int passing, int defending, int physical, double height, double weeklyWage, Team team) {
         this.name = name;
@@ -129,41 +138,6 @@ public class Player implements Serializable {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Player player = (Player) o;
 
-        if (pace != player.pace) return false;
-        if (shooting != player.shooting) return false;
-        if (dribbling != player.dribbling) return false;
-        if (passing != player.passing) return false;
-        if (defending != player.defending) return false;
-        if (physical != player.physical) return false;
-        if (Double.compare(player.height, height) != 0) return false;
-        if (Double.compare(player.weeklyWage, weeklyWage) != 0) return false;
-        if (name != null ? !name.equals(player.name) : player.name != null) return false;
-        return team != null ? team.equals(player.team) : player.team == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = name != null ? name.hashCode() : 0;
-        result = 31 * result + pace;
-        result = 31 * result + shooting;
-        result = 31 * result + dribbling;
-        result = 31 * result + passing;
-        result = 31 * result + defending;
-        result = 31 * result + physical;
-        temp = Double.doubleToLongBits(height);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(weeklyWage);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (team != null ? team.hashCode() : 0);
-        return result;
-    }
 }
