@@ -536,12 +536,19 @@ end
 rule "Strategy 8 - (B and J and P) or (C and P)"
 salience -80
 when
-    $conditionB : Condition(type == ConditionType.B)
-    $conditionJ : Condition(type == ConditionType.J)
-    $conditionP : Condition(type == ConditionType.P)
+    (
+        $conditionB : Condition(type == ConditionType.B)
+        and
+        $conditionJ : Condition(type == ConditionType.J)
+        and
+        $conditionP1 : Condition(type == ConditionType.P)
+    )
     or
-    $conditionC : Condition(type == ConditionType.C)
-    $conditionP : Condition(type == ConditionType.P)
+    (
+        $conditionC : Condition(type == ConditionType.C)
+        and
+        $conditionP2 : Condition(type == ConditionType.P)
+    )
 then
     System.out.println("Strategy 8");
     System.out.println("Defensive Style: Balanced");

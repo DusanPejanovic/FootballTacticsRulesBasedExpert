@@ -34,10 +34,11 @@ public class SampleAppService {
 
 
 		// Strategy 1
-		Player player1 = new Player("Player One", 60, 60, 60, 60, 60, 60, 1.80, 50000, opponentTeam);
-		Player player2 = new Player("Player Two", 70, 70, 70, 70, 70, 70, 1.85, 60000, opponentTeam);
-		Player player3 = new Player("Player Three", 100, 100, 100, 100, 100, 100, 1.75, 40000, yourTeam);
-		Player player4 = new Player("Player Four", 100, 100, 100, 100, 100, 100, 1.90, 70000, yourTeam);
+		Player player1 = new Player("Player One", 60, 67, 67, 65, 65, 65, 1.80, 50000, opponentTeam);
+		Player player2 = new Player("Player Two", 60, 67, 67, 65, 65, 65, 1.85, 60000, opponentTeam);
+		Player player3 = new Player("Player Three", 65, 65, 65, 65, 65, 65, 1.75, 40000, yourTeam);
+		Player player4 = new Player("Player Four", 65, 65, 65, 65, 65, 65, 1.90, 70000, yourTeam);
+
 
 		yourTeam.addPlayer(player3);
 		yourTeam.addPlayer(player4);
