@@ -1,6 +1,7 @@
 package backward;
 import com.ftn.sbnz.model.models.Team;
 import com.ftn.sbnz.model.models.Player;
+import com.ftn.sbnz.model.models.Strategy;
 import com.ftn.sbnz.model.models.TeamType;
 import com.ftn.sbnz.model.models.Condition;
 import com.ftn.sbnz.model.models.ConditionType;
@@ -426,6 +427,7 @@ then
     System.out.println("Chance Creation: Forward Runs");
     System.out.println("Width: 40");
     System.out.println("Players Run into Box: Low");
+    insertLogical(new Strategy("Strategy 1", "Drop Back", 30, 25, "Long Ball", "Forward Runs", 40, "Low"));
 end
 
 rule "Strategy 2 - (B and D)"
@@ -479,11 +481,17 @@ end
 rule "Strategy 5 - (J and K) or (C and K)"
 salience -50
 when
-    $conditionJ : Condition(type == ConditionType.J)
-    $conditionK : Condition(type == ConditionType.K)
+    (
+        $conditionJ : Condition(type == ConditionType.J)
+        and
+        $conditionK1 : Condition(type == ConditionType.K)
+    )
     or
-    $conditionC : Condition(type == ConditionType.C)
-    $conditionK : Condition(type == ConditionType.K)
+    (
+        $conditionC : Condition(type == ConditionType.C)
+        and
+        $conditionK2 : Condition(type == ConditionType.K)
+    )
 then
     System.out.println("Strategy 5");
     System.out.println("Defensive Style: Constant Pressure");
@@ -498,11 +506,17 @@ end
 rule "Strategy 6 - (J and M) or (C and M)"
 salience -60
 when
-    $conditionJ : Condition(type == ConditionType.J)
-    $conditionM : Condition(type == ConditionType.M)
+    (
+        $conditionJ : Condition(type == ConditionType.J)
+        and
+        $conditionM1 : Condition(type == ConditionType.M)
+    )
     or
-    $conditionC : Condition(type == ConditionType.C)
-    $conditionM : Condition(type == ConditionType.M)
+    (
+        $conditionC : Condition(type == ConditionType.C)
+        and
+        $conditionM2 : Condition(type == ConditionType.M)
+    )
 then
     System.out.println("Strategy 6");
     System.out.println("Defensive Style: Press After Possession Loss");
@@ -517,11 +531,17 @@ end
 rule "Strategy 7 - (J and O) or (C and O)"
 salience -70
 when
-    $conditionJ : Condition(type == ConditionType.J)
-    $conditionO : Condition(type == ConditionType.O)
+    (
+        $conditionJ : Condition(type == ConditionType.J)
+        and
+        $conditionO1 : Condition(type == ConditionType.O)
+    )
     or
-    $conditionC : Condition(type == ConditionType.C)
-    $conditionO : Condition(type == ConditionType.O)
+    (
+        $conditionC : Condition(type == ConditionType.C)
+        and
+        $conditionO2 : Condition(type == ConditionType.O)
+    )
 then
     System.out.println("Strategy 7");
     System.out.println("Defensive Style: Drop Back");
@@ -531,6 +551,8 @@ then
     System.out.println("Chance Creation: Forward Runs");
     System.out.println("Width: 70");
     System.out.println("Players Run into Box: Medium");
+    insertLogical(new Strategy("Strategy 1", "Drop Back", 30, 25, "Long Ball", "Forward Runs", 40, "Low"));
+
 end
 
 rule "Strategy 8 - (B and J and P) or (C and P)"
