@@ -3,9 +3,9 @@ package com.ftn.sbnz.service.dto;
 import com.ftn.sbnz.service.model.UserRole;
 
 public class SignUpDto {
-    private String login;
-    private String password;
-    private UserRole role;
+    public String login;
+    public String password;
+    public UserRole role;
 
     public SignUpDto(String login, String password, UserRole role) {
         this.login = login;

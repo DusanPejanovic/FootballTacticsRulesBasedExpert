@@ -1,8 +1,8 @@
 package com.ftn.sbnz.service.dto;
 
 public class SignInDto {
-    private String login;
-    private String password;
+    public String login;
+    public String password;
 
     public SignInDto() {
     }
