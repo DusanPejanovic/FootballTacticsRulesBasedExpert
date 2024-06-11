@@ -19,11 +19,8 @@ export class RegistrationPageComponent {
 
   private initializeForm() {
     this.registerForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      surname: new FormControl('', Validators.required),
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$")
       ]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       profilePicture: new FormControl(null)
@@ -56,10 +53,11 @@ export class RegistrationPageComponent {
   onRegister() {
     if (this.registerForm.valid) {
       const formData = this.createRegistrationData();
+      console.log(formData);
 
       this.userService.registerUser(formData).subscribe({
         next: () => {
-          this.snackBar.open('Email sent. Please verify it.', 'Close', { duration: 3200 });
+          this.snackBar.open('Feel free to log in.', 'Close', { duration: 3200 });
           this.router.navigate(['/login']);
         },
         error: (error) => {
@@ -79,13 +77,12 @@ export class RegistrationPageComponent {
   private createRegistrationData() {
     const formData = new FormData();
     Object.keys(this.registerForm.controls).forEach(key => {
-      if (key === 'profilePicture') {
-        const file = this.registerForm.get(key)?.value;
-        if (file) formData.append('img', file, file.name);
-      } else {
-        const value = this.registerForm.get(key)?.value;
-        if (value) formData.append(key, value);
-      }
+
+      const value = this.registerForm.get(key)?.value;
+      if (value) formData.append(key, value);
+      console.log(key);
+      console.log(value);
+
     });
 
     return formData;

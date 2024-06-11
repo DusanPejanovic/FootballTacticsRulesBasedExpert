@@ -28,7 +28,7 @@ public class AuthConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers( "/auth/*").permitAll()
-                        .antMatchers(HttpMethod.POST, "/api/v1/books").hasRole("ADMIN")
+                        .antMatchers( "/tactics/*").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

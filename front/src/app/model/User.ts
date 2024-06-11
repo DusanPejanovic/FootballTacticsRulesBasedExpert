@@ -6,7 +6,7 @@ export interface UserSimpleDTO {
   surname: string;
 }
 export interface LoginCredentials {
-  email: string,
+  login: string,
   password: string
 }
 

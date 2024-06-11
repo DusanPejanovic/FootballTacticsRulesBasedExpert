@@ -1,0 +1,56 @@
+<div class="team-container">
+  <div class="team">
+    <h2>My Team</h2>
+    <br />
+    <input [(ngModel)]="myTeamPlayerName" (input)="filterPlayers('myTeam')" placeholder="Enter player name" />
+    <ul *ngIf="filteredPlayers.length && myTeamPlayerName">
+      <li *ngFor="let player of filteredPlayers" (click)="addPlayer(player, 'myTeam')">
+        {{ player.fullName }} - Overall: {{ player.overall }}
+      </li>
+    </ul>
+    <ul style="height: 600px;">
+      <li *ngFor="let player of myTeam">
+        {{ player.fullName }} - Overall: {{ player.overall }}, Pace: {{ player.pace }},
+        Shooting: {{ player.shooting }}, Passing: {{ player.passing }},
+        Dribbling: {{ player.dribbling }}, Defending: {{ player.defending }},
+        Physicality: {{ player.physical }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="vs">
+    <button class="button-theme" (click)="recommendTactics()">Get Tactics</button>
+    <br />
+    <br />
+    <br />
+    <p class="versus-text">{{words[0]}}</p> <!-- Added text element here -->
+    <p class="versus-text">{{words[1]}}</p> <!-- Added text element here -->
+    <p class="versus-text">{{words[2]}}</p> <!-- Added text element here -->
+    <p class="versus-text">{{words[3]}}</p> <!-- Added text element here -->
+    <p class="versus-text">{{words[4]}}</p> <!-- Added text element here -->
+    <p class="versus-text">{{words[5]}}</p> <!-- Added text element here -->
+    <p class="versus-text">{{words[6]}}</p> <!-- Added text element here -->
+    <p class="versus-text">{{words[7]}}</p> <!-- Added text element here -->
+    <p class="versus-text">{{words[8]}}</p> <!-- Added text element here -->
+  </div>
+
+  <div class="team">
+    <h2>Opponent Team</h2>
+    <br />
+    <input [(ngModel)]="opponentTeamPlayerName" (input)="filterPlayers('opponentTeam')"
+      placeholder="Enter player name" />
+    <ul *ngIf="filteredPlayers.length && opponentTeamPlayerName">
+      <li *ngFor="let player of filteredPlayers" (click)="addPlayer(player, 'opponentTeam')">
+        {{ player.fullName }} - Overall: {{ player.overall }}
+      </li>
+    </ul>
+    <ul style="height: 600px;">
+      <li *ngFor="let player of opponentTeam">
+        {{ player.fullName }} - Overall: {{ player.overall }}, Pace: {{ player.pace }},
+        Shooting: {{ player.shooting }}, Passing: {{ player.passing }},
+        Dribbling: {{ player.dribbling }}, Defending: {{ player.defending }},
+        Physicality: {{ player.physical }}
+      </li>
+    </ul>
+  </div>
+</div>

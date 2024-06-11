@@ -16,10 +16,12 @@ export class LoginPageComponent {
   passwordError: boolean = false;
 
   constructor(private userService: UserService, private router: Router) {
+    this.userService.clearToken();
+
   }
 
   authForm: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required]),
     pass: new FormControl('', [Validators.required])
   })
 
@@ -64,7 +66,7 @@ export class LoginPageComponent {
       return;
     }
     let credentials: LoginCredentials = {
-      email: this.authForm.controls["email"].value,
+      login: this.authForm.controls["email"].value,
       password: this.authForm.controls["pass"].value
     };
 
@@ -75,18 +77,16 @@ export class LoginPageComponent {
         this.userService.loadUser();
         this.userService.user.subscribe(user => {
           console.log(user);
-          if (user?.role == UserType.ADMIN || user?.role == UserType.SUPER_ADMIN) {
-            this.router.navigate(["admin/home"]);
-          } else if (user?.role == UserType.STANDARD_USER) {
-            this.router.navigate(["/home"])
-          }
+
+          this.router.navigate(["/home"])
+
         });
       },
       error: (error) => {
         this.authForm.get('pass')?.setValue(null);
         console.log(error.error.message);
 
-        this.errorMessage = error.error.message;
+        this.errorMessage = "Wrong password or username";
       }
     });
   }

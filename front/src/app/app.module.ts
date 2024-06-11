@@ -29,6 +29,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { MatTableModule } from "@angular/material/table";
 import { DatePipePipe } from './utils/date-pipe.pipe';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
     TwoActionSnackbarComponent,
     LoginPageComponent,
     LogoComponent,
+    UserHomePageComponent,
     RegistrationPageComponent,
     DatePipePipe,
   ],
@@ -62,6 +64,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
     MatDatepickerModule,
     MatExpansionModule,
     MatTableModule,
+    DragDropModule,
     MatAutocompleteModule
   ],
   providers: [{

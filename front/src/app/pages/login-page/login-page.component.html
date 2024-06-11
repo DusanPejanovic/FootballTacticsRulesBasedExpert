@@ -1,11 +1,10 @@
 <div class="centered-container">
     <div class="form-container">
-        <app-logo />
         <form [formGroup]="authForm">
             <div [ngClass]="{'error-border': emailError}" style="position: relative;">
                 <span class="material-icons"
                     style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">email</span>
-                <input class="text-field width" placeholder="Email" formControlName="email" type="email"
+                <input class="text-field width" placeholder="Username" formControlName="email" type="email"
                     style="padding-left: 40px;" />
             </div>
             <div style="position: relative; ">

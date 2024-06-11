@@ -23,10 +23,17 @@ export class UserService {
     user: BehaviorSubject<Principal | undefined> = new BehaviorSubject<Principal | undefined>(undefined);
 
     setToken(data: AccessTokenResponse) {
+
+
         localStorage.setItem('token', data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
     }
     clearToken() {
+        localStorage.clear();
+        sessionStorage.clear();
+    }
+
+    cToken() {
         localStorage.clear();
         sessionStorage.clear();
     }
@@ -55,8 +62,9 @@ export class UserService {
         this.user.next(principal);
     }
     private test: string | null = null;
-    loginUser(credentials: LoginCredentials): Observable<AccessTokenResponse> {
-        return this.http.post<AccessTokenResponse>(`${environment.apiHost}user/login`, credentials);
+    loginUser(credentials: LoginCredentials): Observable<any> {
+        this.clearToken();
+        return this.http.post<any>(`${environment.apiHost}auth/signin`, credentials);
     }
 
     refreshToken(): Observable<AccessTokenResponse> {
@@ -72,7 +80,30 @@ export class UserService {
 
 
     registerUser(formData: FormData): Observable<any> {
-        return this.http.post(`${environment.apiHost}standard-user/signup`, formData, { responseType: 'text' });
+        this.cToken();
+        return this.http.post(`${environment.apiHost}auth/signup`, { "login": formData.get("email"), "password": formData.get("password"), "role": 1 }, { responseType: 'text' });
+    }
+
+
+    getTactics(myTeam: any, opponentTeam: any): Observable<any> {
+
+        console.log(myTeam);
+        console.log(opponentTeam);
+
+        this.cToken();
+
+        return this.http.post(`${environment.apiHost}tactics/strategy`, {
+            "yourTeam": {
+                "name": "Your Team Name",
+                "players": myTeam,
+                "teamType": "YOUR_TEAM"
+            },
+            "opponentTeam": {
+                "name": "Opponent Team Name",
+                "players": opponentTeam,
+                "teamType": "OPPONENT_TEAM"
+            }
+        }, { responseType: 'text' });
     }
 
 
