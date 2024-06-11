@@ -1,0 +1,13 @@
+<div>
+  <h1 class="text-center mb-5">Devices</h1>
+  <div class="row col-12">
+    <div class="col-xl-3 col-lg-4 col-md-6 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
+      <button id="add-venue-button" (click)="openAddDeviceDialog()" mat-fab>
+        <mat-icon fontSet="material-icons-round">add</mat-icon>
+      </button>
+    </div>
+    <div *ngFor="let device of devices" class="col-xl-3 col-lg-4 col-md-6">
+      <app-device-card [device]="device"></app-device-card>
+    </div>
+  </div>
+</div>

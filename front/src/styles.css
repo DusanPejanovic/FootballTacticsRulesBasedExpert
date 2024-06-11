@@ -1,0 +1,122 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --background-dark: #131110;
+  --background-light: #ffffff;
+  --background-neutral: #efefef;
+
+  --text-light: #ffffff;
+  --text-dark: #131110;
+
+  --border-color: #e0e0e0;
+  --border-radius: 8px;
+
+
+  --details-01: #22333B;
+  --details-02: #EAE0D5;
+  --details-03: #C6AC8F;
+  --details-04: #5E503F;
+
+  --error-color: #d63131;
+
+  --hover-dark: #262220;
+
+  --font-family: 'Poppins', sans-serif;
+
+  background-color: var(--background-neutral);
+}
+
+body {
+  font-family: var(--font-family)
+}
+
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+
+.form-container {
+  max-width: 400px;
+  /* Adjust as needed */
+  padding: 20px;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
+  /* Optional shadow for depth */
+  background-color: white;
+  /* Optional background color */
+  border-radius: var(--border-radius);
+  /* Optional border radius for rounded corners */
+
+}
+
+
+.text-field {
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  margin: 0.5rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2);
+  }
+}
+
+
+.button-theme {
+  background-color: var(--details-01);
+  border: none;
+  padding-block: 0.5rem;
+  padding-inline: 1.5rem;
+  margin: 0.5rem;
+  border-radius: var(--border-radius);
+  font-size: 1.25rem;
+  color: var(--text-light) !important;
+  cursor: pointer;
+}
+
+.button-theme:hover {
+  background-color: #2e454f;
+}
+
+.button-theme:disabled {
+  cursor: auto;
+  color: #bababa;
+  background-color: #4a6470;
+}
+
+.button-theme-light {
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  font-size: 1.25rem;
+  color: var(--text-light) !important;
+  cursor: pointer;
+  background-color: var(--details-03);
+}
+
+.button-theme-light:hover {
+  background-color: #a38f79;
+}
+
+.default-border {
+  border: 2px solid var(--details-01);
+  border-radius: 6px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: normal;
+}

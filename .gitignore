@@ -5,3 +5,5 @@
 /football-tactics/football-tactics-kjar/target
 /sbnz-integracija-projekta/.idea
 /sbnz-integracija-projekta/service/.mvn
+/front/.angular/cache
+/front/node_modules

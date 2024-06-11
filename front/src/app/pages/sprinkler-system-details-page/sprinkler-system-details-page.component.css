@@ -1,0 +1,46 @@
+.wrapper {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 800px;
+}
+
+.section-header {
+  font-weight: bold;
+  max-width: 180px;
+  text-align: center;
+  margin-top: -37px;
+  background-color: var(--background-light);
+  padding: 5px;
+}
+
+.button-theme-light {
+  font-weight: normal;
+}
+
+img {
+  object-fit: cover; /* This ensures the image retains its aspect ratio */
+}
+.table-wrapper{
+  max-height: 400px;
+  overflow-y: scroll;
+}
+.weekday-div{
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  border: 2px solid var(--details-01);
+  font-weight: bold;
+  cursor: pointer;
+}
+.selected{
+  background-color: var(--details-01);
+  color: var(--text-light);
+}
+.table-wrapper{
+  max-height: 400px;
+  overflow-y: scroll;
+}

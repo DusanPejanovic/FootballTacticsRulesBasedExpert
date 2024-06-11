@@ -1,0 +1,8 @@
+<div>
+    <h1 class="text-center mb-5">Property Requests</h1>
+    <div class="row">
+        <div *ngFor="let property of properties" class="mb-4 col-12 col-xxl-6">
+            <app-property-request-card (requestApproved)="removeRequest($event)" (requestRejected)="removeRequest($event)" [property]="property"></app-property-request-card>
+        </div>
+    </div>
+</div>

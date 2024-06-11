@@ -1,0 +1,47 @@
+<nav>
+  <div class="logo-wrapper">
+    <p>Smart Home</p>
+  </div>
+  <!--  User -->
+  <div *ngIf="userService.user.getValue()?.role == UserType.STANDARD_USER" class="nav-items-wrapper">
+    <a class="nav-item" href="/home">
+      <mat-icon>home</mat-icon>
+      <p>Home</p>
+    </a>
+  </div>
+  <!--  User -->
+
+  <!--  Admin -->
+  <div *ngIf="userService.user.getValue()?.role == UserType.ADMIN" class="nav-items-wrapper">
+    <a class="nav-item" href="/admin/home">
+      <mat-icon>home</mat-icon>
+      <p>Home</p>
+    </a>
+  </div>
+  <!--  Admin -->
+
+  <!--  Super Admin -->
+  <div *ngIf="userService.user.getValue()?.role == UserType.SUPER_ADMIN" class="nav-items-wrapper">
+    <a class="nav-item" href="/admin/home">
+      <mat-icon>home</mat-icon>
+      <p>Home</p>
+    </a>
+  </div>
+
+  <div *ngIf="userService.user.getValue()?.role == UserType.SUPER_ADMIN" class="nav-items-wrapper">
+    <a class="nav-item" href="/super-admin/add-admin">
+      <mat-icon>add</mat-icon>
+      <p>Add admin</p>
+    </a>
+  </div>
+  <!--  Super Admin -->
+
+  <div *ngIf="userService.user.getValue() != undefined" class="nav-footer-wrapper">
+    <div class="nav-item" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <p>Logout</p>
+    </div>
+  </div>
+
+  <!--  https://coolors.co/visualizer/131110-22333b-eae0d5-c6ac8f-5e503f-->
+</nav>

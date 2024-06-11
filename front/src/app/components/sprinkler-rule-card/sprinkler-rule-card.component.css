@@ -1,0 +1,23 @@
+.weekday-div{
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  border: 2px solid var(--details-01);
+  font-weight: bold;
+}
+.selected{
+  background-color: var(--details-01);
+  color: var(--text-light);
+}
+.sprinkler-rule-card-wrapper{
+  background-color: var(--background-light);
+  font-weight: bold;
+  padding: 1rem;
+  border: 2px solid var(--details-01);
+  border-radius: 6px;
+  width: 100%;
+}

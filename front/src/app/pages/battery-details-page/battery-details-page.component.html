@@ -1,0 +1,47 @@
+<div class="main-content d-flex flex-column">
+  <h1 class="text-center">{{battery?.name}}</h1>
+  <div class="mt-4 wrapper">
+    <div>
+      <div class="default-border p-4 details">
+        <p class="section-header default-border">Details</p>
+        <p>device type: {{battery?.type}}</p>
+        <p>capacity: {{battery?.size}} W</p>
+        <p>status: {{battery?.status}}</p>
+      </div>
+    </div>
+
+    <form [formGroup]="filtersForm" class="mt-4 d-flex flex-row justify-content-start align-items-baseline">
+      <mat-form-field>
+        <mat-label>Select</mat-label>
+        <mat-select formControlName="filter">
+          <mat-option value="1">1h - Live Update</mat-option>
+          <mat-option value="6">6h</mat-option>
+          <mat-option value="12">12h</mat-option>
+          <mat-option value="24">1 day</mat-option>
+          <mat-option value="168">1 week</mat-option>
+          <mat-option value="5040">1 month</mat-option>
+          <mat-option value="custom">Custom</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="date-range-picker ms-4">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input  [rangePicker]="picker">
+          <input matStartDate formControlName="start" placeholder="Start date">
+          <input matEndDate formControlName="end" placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      <button class="button-theme ms-4" (click)="applyFilters()">Apply</button>
+    </form>
+
+    <div style="display: block;">
+      <canvas baseChart
+              [data]="lineChartData"
+              [legend]="true"
+              [options]="lineChartOptions"
+              type="line">
+      </canvas>
+    </div>
+  </div>
+</div>

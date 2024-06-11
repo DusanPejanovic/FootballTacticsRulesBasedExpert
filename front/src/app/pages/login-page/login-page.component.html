@@ -1,0 +1,24 @@
+<div class="centered-container">
+    <div class="form-container">
+        <app-logo />
+        <form [formGroup]="authForm">
+            <div [ngClass]="{'error-border': emailError}" style="position: relative;">
+                <span class="material-icons"
+                    style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">email</span>
+                <input class="text-field width" placeholder="Email" formControlName="email" type="email"
+                    style="padding-left: 40px;" />
+            </div>
+            <div style="position: relative; ">
+                <span class="material-icons"
+                    style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%);">lock</span>
+                <input class="text-field width" placeholder="Password" formControlName="pass" type="password"
+                    style="padding-left: 40px;" />
+            </div>
+            <p style="margin: 0.5rem; color: #f85e5e;" *ngIf="errorMessage.length != 0">{{errorMessage}}</p>
+            <button class="button-theme width" (click)="onSubmit()">{{'LOGIN'}}</button>
+            <p class="sign-up-link width" style="margin: 0.5rem;">
+                Don't have an account? <a href="/registration">Sign Up</a>
+            </p>
+        </form>
+    </div>
+</div>

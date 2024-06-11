@@ -1,0 +1,130 @@
+<mat-dialog-content style="height: 100%">
+  <h1 class="text-center">Add device</h1>
+  <form (ngSubmit)="submit()" class="mt-5" [formGroup]="form">
+    <mat-form-field class="col-12">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="col-12">
+      <mat-label>Device type</mat-label>
+      <mat-select formControlName="type" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let type of deviceTypes"
+                    [value]="type">{{ getDeviceTypeLabel(type) }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-12">
+      <mat-label>Power type</mat-label>
+      <mat-select formControlName="powerType" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let type of PowerTypes"
+                    [value]="type">{{ getPowerTypeLabels(type) }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-12">
+      <mat-label>Energy Consumption [Wh]</mat-label>
+      <input matInput formControlName="energyConsumption">
+    </mat-form-field>
+
+    <div [ngSwitch]="form.controls['type'].value">
+      <div *ngSwitchCase=DeviceType.AIR_CONDITIONER>
+        <mat-form-field class="col-12">
+          <mat-label>Min Temp</mat-label>
+          <input matInput formControlName="minTemp">
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <mat-label>Max Temp</mat-label>
+          <input matInput formControlName="maxTemp">
+        </mat-form-field>
+      </div>
+
+      <div *ngSwitchCase=DeviceType.SOLAR_PANEL_SYSTEM>
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Panels
+              </mat-panel-title>
+              <mat-panel-description>
+                Add panel to the solar system
+                <mat-icon>solar_power</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-form-field style="margin-right: 4px">
+              <mat-label>Surface [m^2]</mat-label>
+              <input matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="panelInput.surface">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Efficiency [%]</mat-label>
+              <input matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="panelInput.efficiency">
+            </mat-form-field>
+
+            <mat-action-row>
+              <button mat-button type="button" color="primary" (click)="addPanel()">Next</button>
+            </mat-action-row>
+
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+              <ng-container matColumnDef="surface">
+                <th mat-header-cell *matHeaderCellDef> Surface </th>
+                <td mat-cell *matCellDef="let element"> {{element.surface}} m^2 </td>
+              </ng-container>
+
+              <ng-container matColumnDef="efficiency">
+                <th mat-header-cell *matHeaderCellDef> Efficiency </th>
+                <td mat-cell *matCellDef="let element"> {{element.efficiency}}% </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+      <div *ngSwitchCase=DeviceType.HOME_BATTERY>
+        <mat-form-field class="col-12">
+          <mat-label>Size [W]</mat-label>
+          <input matInput formControlName="size">
+        </mat-form-field>
+      </div>
+
+      <div *ngSwitchCase=DeviceType.ELECTRIC_VEHICLE_CHARGER>
+        <mat-form-field class="col-12">
+          <mat-label>Number Of Inputs</mat-label>
+          <input matInput formControlName="numberOfInputs">
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <mat-label>Charging Power</mat-label>
+          <input matInput formControlName="chargingPower">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-6 mt-4" style="display: inline-block">
+      <p>Image*</p>
+      <input class="mw-100" type="file" (change)="onFileChange($event)"/>
+    </div>
+
+    <div *ngIf="imgChangeEvt != undefined" class="col-6 default-border mt-4">
+      <image-cropper
+        [imageChangedEvent]="imgChangeEvt"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="3 / 2"
+        [resizeToWidth]="600"
+        format="png"
+        (imageCropped)="cropImg($event)">
+      </image-cropper>
+    </div>
+
+    <button [disabled]="form.invalid || croppedImage == undefined" class="button-theme w-100 mt-4" type="submit">
+      Create
+    </button>
+  </form>
+</mat-dialog-content>

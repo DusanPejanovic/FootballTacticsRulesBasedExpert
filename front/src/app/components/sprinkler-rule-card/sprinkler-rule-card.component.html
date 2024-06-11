@@ -1,0 +1,19 @@
+<div class="d-flex flex-row sprinkler-rule-card-wrapper mw-100">
+  <div>
+    <p><b>{{fromTime}} - {{toTime}}</b></p>
+    <div class="d-flex flex-row">
+      <div [ngClass]="{selected: rule!.daysOfTheWeek.includes(1)}" class="weekday-div">Mo</div>
+      <div [ngClass]="{selected: rule!.daysOfTheWeek.includes(2)}" class="weekday-div">Tu</div>
+      <div [ngClass]="{selected: rule!.daysOfTheWeek.includes(3)}" class="weekday-div">We</div>
+      <div [ngClass]="{selected: rule!.daysOfTheWeek.includes(4)}" class="weekday-div">Th</div>
+      <div [ngClass]="{selected: rule!.daysOfTheWeek.includes(5)}" class="weekday-div">Fr</div>
+      <div [ngClass]="{selected: rule!.daysOfTheWeek.includes(6)}" class="weekday-div">Sa</div>
+      <div [ngClass]="{selected: rule!.daysOfTheWeek.includes(7)}" class="weekday-div">Su</div>
+    </div>
+  </div>
+  <div class="align-self-center flex-grow-1 d-flex flex-row-reverse me-2">
+    <button (click)="deleteItem()" mat-mini-fab color="primary">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

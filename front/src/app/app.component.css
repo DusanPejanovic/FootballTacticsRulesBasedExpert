@@ -1,0 +1,12 @@
+app-navbar{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 200px;
+}
+.main:last-child{
+  margin-left: 200px;
+  padding: 40px;
+  background-color: var(--background-neutral);
+}
